@@ -20,8 +20,5 @@ def add(request):
         form = ArticleForm(request.POST)
 
         if form.is_valid():
-            title = form.cleaned_data['title']
-            content = form.cleaned_data['content']
-            Article.objects.create(title=title, content= content)
-
+            form.save()
             return HttpResponse('created successuflly')
