@@ -1,4 +1,5 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse, redirect
+from django.urls import reverse
 from articles.models import Article
 from articles.forms import ArticleForm
 
@@ -20,15 +21,14 @@ def add(request):
         }
 
         return render(request, 'article/creat.html', context)
-        return render(request,'article/list.html',content)
 
     else:
 
         form = ArticleForm(request.POST)
 
         if form.is_valid():
-            form.save()
-            return HttpResponse('created successuflly')
+            article = form.save()
+            return redirect(reverse('detail', args=[article.id]))
 
 def detail(request,id):
      selected_article = Article.objects.get(id=id)
