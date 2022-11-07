@@ -1,9 +1,14 @@
 from django.shortcuts import render,HttpResponse
 from articles.models import Article
 from articles.forms import ArticleForm
+
 def list(request):
 
-    return HttpResponse('list tables are created')
+    my_articles = Article.objects.all().values()
+    context = {
+        'my_articles': my_articles
+    }
+    return render(request, 'article/list.html', context)
 
 def add(request):
 
@@ -14,6 +19,7 @@ def add(request):
         }
 
         return render(request, 'article/creat.html', context)
+        return render(request,'article/list.html',content)
 
     else:
 
