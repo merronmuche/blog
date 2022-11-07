@@ -2,6 +2,7 @@ from django.shortcuts import render,HttpResponse
 from articles.models import Article
 from articles.forms import ArticleForm
 
+
 def list(request):
 
     my_articles = Article.objects.all().values()
@@ -28,3 +29,12 @@ def add(request):
         if form.is_valid():
             form.save()
             return HttpResponse('created successuflly')
+
+def detail(request,id):
+     selected_article = Article.objects.get(id=id)
+
+     data = {
+            'article': selected_article,
+                }
+    
+     return render(request, 'article/detail.html', data)
