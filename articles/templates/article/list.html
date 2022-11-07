@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Blogs</title>
 </head>
 <body>
     <h1>Articles</h1>
-    <ul>
-    {% for x in my_articles %}
-      <li>{{ x.title }}</li>
-    {% endfor %}
-  </ul>
+<table>
+<tr>
+  <td> ID</td>
+  <td> Title </td>
+</tr>
+
+{% for x in my_articles %}
+<tr>
+  <td>{{ x.id }}</td> <td>{{ x.title }}</td>
+</tr>
+
+{% endfor %}
+</table>
+  
 </body>
 </html>
